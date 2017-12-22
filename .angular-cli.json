@@ -21,9 +21,7 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [
-        "assets/contacts.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
