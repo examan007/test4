@@ -1,0 +1,258 @@
+<div id="ContactManager" ng-app="ContactManager">
+    <div ng-controller="ContactController as Contacts" class="container">
+        <div style="text-align:center">
+            <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                <div class="row user-row user-row-wrap">
+                    <span class="pull-left">
+                        Contact Name
+                    </span>
+                    <span class="pull-right">
+                        <input type="text" [(ngModel)]="contactname" />
+                        <button class="btn btn-sm btn-primary" type="button"
+                                (click)="create();">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </button>
+                        <button class="btn btn-sm btn-primary" type="button"
+                                (click)="Contacts.search();">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let obj of objects" class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+            <div class="row user-row">
+                <div class="img-wrap col-xs-2 col-sm-1">
+                    <img class="img-attr-thumb img-circle img-{{obj.Key}}" id="{{obj.Key}}-thumb"
+                         src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="SmallImage"
+                         alt="User Pic">
+                </div>
+                <div class="col-xs-10 col-sm-11 summary-table">
+                    <div>
+                        <div class="col-xs-10 summary-row">
+                            <strong>{{obj.Name}}</strong>
+                        </div>
+                        <div class="col-xs-2 user-info-select">
+                            <i class="glyphicon glyphicon-chevron-{{obj.direction}} text-muted"
+                               (click)="Contacts.expand(obj);"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 summary-row">
+                        <span *ngFor="let temp of template"
+                              [class]="objclass">
+                            {{obj[temp.name]}}&nbsp;
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div id="{{obj.Key}}" class="row user-infos" style="display:none">
+                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading col-xs-12">
+                            <div class="col-xs-4">
+                                <h3 class="panel-title">User information</h3>
+                            </div>
+                            <div class="col-xs-8">
+                                <table class="user-info">
+                                    <tr>
+                                        <td>
+                                            <input id="upload-{{obj.Key}}-A" type="file" style="visibility:hidden"
+                                                (change)="readSingleFile(obj, '-A');" />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary {{obj.loadclass}}" type="button"
+                                                    (click)="Contacts.upload(obj, '-A');"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Update profile picture">
+                                                <i class="glyphicon glyphicon-upload"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning {{obj.showclass}}" type="button"
+                                                    (click)="Contacts.edit(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Edit this user">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary {{obj.editclass}}" type="button"
+                                                    (click)="Contacts.save(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Save this user">
+                                                <i class="glyphicon glyphicon-save"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning {{obj.editclass}}" type="button"
+                                                    (click)="Contacts.refresh(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Refresh">
+                                                <i class="glyphicon glyphicon-refresh"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger hastooltip {{obj.showclass}}" type="button"
+                                                    (click)="Contacts.remove(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Delete this user">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                    <img class="img-attr img-circle img-{{obj.Key}}" id="{{obj.Key}}-Device"
+                                         src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="LargeImage"
+                                         alt="User Pic" />
+                                </div>
+                                <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                    <img class="img-attr img-circle img-{{obj.Key}}" id="{{obj.Key}}-Tablet"
+                                         src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="LargeImage"
+                                         alt="User Pic" />
+                                </div>
+                                <div class="attr-name-device col-xs-10 hidden-sm hidden-md hidden-lg">
+                                    <div class="attr-name-title">
+                                        <strong>{{obj.Name}}</strong><br>
+                                    </div>
+                                    <ul class="attr-list-device">
+                                        <li *ngFor="let temp of template" >
+                                            <dl>
+                                                <dt>
+                                                    <span class="label-fixed">
+                                                        {{temp.label}}
+                                                    </span>
+                                                </dt>
+                                                <dd>
+                                                    <span class="{{obj.editclass}} input-fixed">
+                                                        <input type="text"
+                                                               name="{{obj.Name}}.{{temp.name}}"
+                                                               value="{{obj[temp.name]}}"
+                                                               [(ngModel)]="obj[temp.name]" />
+                                                    </span>
+                                                    <span class="{{obj.showclass}} attr-fixed">
+                                                        {{obj[temp.name]}}
+                                                    </span>
+                                                </dd>
+                                            </dl>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-9 col-lg-9 hidden-xs col-sm-9">
+                                    <div class="attr-name-title">
+                                        <strong>{{obj.Name}}</strong><br>
+                                    </div>
+                                    <table class="table table-user-information">
+                                        <tbody>
+                                            <tr *ngFor="let temp of template" >
+                                                <td>{{temp.label}}:</td>
+                                                <td>
+                                                    <div class="{{obj.editclass}}">
+                                                        <input type="text"
+                                                               name="{{obj.Name}}.{{temp.name}}"
+                                                               value="{{obj[temp.name]}}"
+                                                               [(ngModel)]="obj[temp.name]" />
+                                                    </div>
+                                                    <div class="{{obj.showclass}}">
+                                                        {{obj[temp.name]}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer col-xs-12">
+                            <div class="col-xs-4">
+                                <h3 class="panel-title"></h3>
+                            </div>
+                            <div class="col-xs-8">
+                                <table class="user-info">
+                                    <tr>
+                                        <td>
+                                            <input id="upload-{{obj.Key}}-B" type="file" style="visibility:hidden"
+                                                   (change)="readSingleFile(obj, '-B');" />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary {{obj.loadclass}}" type="button"
+                                                    (click)="Contacts.upload(obj, '-B');"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Update profile picture">
+                                                <i class="glyphicon glyphicon-upload"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning {{obj.showclass}}" type="button"
+                                                    (click)="Contacts.edit(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Edit this user">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary {{obj.editclass}}" type="button"
+                                                    (click)="Contacts.save(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Save this user">
+                                                <i class="glyphicon glyphicon-save"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning {{obj.editclass}}" type="button"
+                                                    (click)="Contacts.refresh(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Refresh saved values">
+                                                <i class="glyphicon glyphicon-refresh"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger hastooltip {{obj.showclass}}" type="button"
+                                                    (click)="Contacts.remove(obj);"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Delete this user">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Contacts-Modal" class="modal">
+                <table class="modal-content">
+                    <tr>
+                        <td>
+                            <div>
+                                <p class="modal-entry col-xs-12" *ngFor="let entry of results"><b>{{entry.name}}:</b>&nbsp;{{entry.message}}</p>
+                            </div>
+                            <div>
+                                <div id="Contacts-Modal-close" class="close col-xs-6">&lt;cancel&gt;</div>
+                                <div id="Contacts-Modal-ok" class="close col-xs-6">&lt;delete&gt;</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

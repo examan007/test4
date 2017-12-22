@@ -1,0 +1,184 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+}
+.well {
+    width: 100%;
+    padding: 0px;
+    padding-top: 3px;
+    margin: 0px;
+    overflow:hidden;
+}
+
+.img-attr-thumb {
+    position: relative;
+    top: 8px;
+    left: 8px;
+    max-height: 30px;
+}
+
+.img-attr {
+    max-height: 150px;
+    position: relative;
+    top: 0.5em;
+}
+
+.img-wrap {
+    padding: 0px;
+    padding-bottom: 1.2em;
+}
+
+.row {
+    margin: 0px;
+    padding: 0px;
+}
+
+.user-row {
+}
+
+.user-row-wrap {
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.user-info-select {
+    position: relative;
+    top: 0.8em;
+    z-index: 100;
+}
+
+.dropdown-user {
+    float: right;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.user-info {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    position: relative;
+    right: 0px;
+    float: right;
+}
+
+.table-user-information {
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+
+.attr-list-device {
+    padding-top: 150px;
+    float: right;
+}
+
+.attr-name-device {
+    padding-top: 0px;
+}
+
+.attr-list-tablet {
+    padding-left: 100px;
+    float: right;
+}
+
+.attr-name-title {
+    float:right;
+}
+
+.attr-table-wrap {
+    padding-left: 20px;
+}
+
+
+dl {
+    margin-bottom: 0px;
+}
+
+.show {
+    display: block;
+}
+
+.noshow {
+    display: none;
+}
+
+.visible {
+    visibility:  visible;
+}
+.invisible {
+    visibility: hidden;
+}
+
+.summary-table {
+    padding-left: 0px;
+    padding-right: 12px;
+    margin: 0px;
+}
+
+.summary-row {
+    overflow:hidden;
+    white-space:nowrap;
+    table-layout:fixed;
+    padding: 0px;
+    margin: 0px;
+}
+
+.summary-value {
+    font-size: xx-small;
+}
+
+.dropdown-user {
+    padding: 0;
+    margin: 0;
+}
+
+.col-xs-3 {
+    width: 15%;
+}
+
+.text-muted {
+    font-size:0.8em;
+}
+
+.text-hidden {
+    display:none;
+}
+
+.input-fixed {
+    font-size:16px;
+}
+
+.attr-fixed {
+    font-size:16px;
+}
+
+.label-fixed {
+    font-size:1em;
+}
+
+.panel-footer {
+    height: 4em;
+}
+
+.panel-heading {
+    height: 4em;
+}
+
+.pull-left {
+    padding-left: 8px;
+}
